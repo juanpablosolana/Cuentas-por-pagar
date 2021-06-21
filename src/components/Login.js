@@ -20,6 +20,7 @@ const Login = () => {
       setUser(user.username)
       setUsername("")
       setPassword("")
+      window.location.replace('');
     } catch(error) {
   setErrorMessage("Wrong credentials")
   setTimeout(() => {
@@ -82,7 +83,6 @@ const Login = () => {
           <Notification message={errorMessage} />
         </div>
       </div>
-      {user?user:null}
     </section>
   );
 }
