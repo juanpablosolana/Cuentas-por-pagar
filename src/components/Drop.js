@@ -165,8 +165,8 @@ const Dropzone = () => {
     return (
         <>
             <div className="container">
-                {unsupportedFiles.length === 0 && validFiles.length ? <button className="file-upload-btn" onClick={() => uploadFiles()}>Upload Files</button> : ''}
-                {unsupportedFiles.length ? <p>Please remove all unsupported files.</p> : ''}
+                {unsupportedFiles.length === 0 && validFiles.length ? <button className="file-upload-btn" onClick={() => uploadFiles()}>Guardar archivos</button> : ''}
+                {unsupportedFiles.length ? <p>Remueve los arvhivos no soportados</p> : ''}
                 <div className="drop-container"
                     onDragOver={dragOver}
                     onDragEnter={dragEnter}
@@ -176,7 +176,7 @@ const Dropzone = () => {
                 >
                     <div className="drop-message">
                         <div className="upload-icon"></div>
-                        Drag & Drop files here or click to select file(s)
+                       Arrastra los CFDI aqui o da clic para buscarlos en tu equipo
                     </div>
                     <input
                         ref={fileInputRef}
