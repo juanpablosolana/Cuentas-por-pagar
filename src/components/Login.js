@@ -16,7 +16,8 @@ const Login = () => {
         username,
         password
       })
-      console.log(user.username)
+      // console.log(user.username)
+      // sessionStorage.setItem(user)
       setUser(user.username)
       setUsername("")
       setPassword("")

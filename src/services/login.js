@@ -4,16 +4,16 @@ const baseUrl = "http://localhost:3000/api/login";
 
 const login = async (credentials) => {
   const { data } = await axios.post(baseUrl, credentials);
-  localStorage.setItem("user", JSON.stringify(data));
+  sessionStorage.setItem("user", JSON.stringify(data));
   return data;
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  sessionStorage.removeItem("user");
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  return JSON.parse(sessionStorage.getItem("user"));
 };
 
 export default { login, logout, getCurrentUser };
