@@ -6,17 +6,15 @@ import './home.css';
 const Home = ({userData})=>{
 //  const {token, username} = JSON.parse(user)
 // console.log(userData.username)
-  return(
+  return (
     <>
-
-    <div>
-      <p className="uppercase">Hola {userData.username}</p>
+      <div>
+        <p className="uppercase">Hola {userData.username}</p>
       </div>
       <div className="content">
-        <Dropzone/>
+        <Dropzone token={userData.token} />
       </div>
-
     </>
-  )
+  );
 }
 export default Home

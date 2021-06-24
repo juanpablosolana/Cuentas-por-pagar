@@ -3,7 +3,8 @@ import axios from 'axios';
 
 import './drop.css';
 
-const Dropzone = () => {
+const Dropzone = ({token}) => {
+    console.log(token)
     // axios.defaults.headers.post['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwY…DMyfQ.tU_simcHnx7G5zUx5wZhJzzkAGYasKiA1epgNg8OXGc';
     const fileInputRef = useRef();
     const modalImageRef = useRef();
@@ -15,8 +16,11 @@ const Dropzone = () => {
     const [validFiles, setValidFiles] = useState([]);
     const [unsupportedFiles, setUnsupportedFiles] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+     const config = { headers: { Authorization: `Bearer ${token}` } };
+     console.log(config);
 
     useEffect(() => {
+
         let filteredArr = selectedFiles.reduce((acc, current) => {
             const x = acc.find(item => item.name === current.name);
             if (!x) {
@@ -153,9 +157,10 @@ const Dropzone = () => {
                setUnsupportedFiles([...validFiles]);
              }
            },
+           config
          })
-         .catch(() => {
-           uploadRef.current.innerHTML = `<span class="error">Error Uploading File(s)</span>`;
+         .catch((error) => {
+           uploadRef.current.innerHTML = `<span class="error">${error.errorMessage}</span>`;
            progressRef.current.style.backgroundColor = "red";
          });
         }
