@@ -5,7 +5,7 @@ import './drop.css';
 
 const Dropzone = ({token}) => {
     console.log(token)
-    // axios.defaults.headers.post['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwY…DMyfQ.tU_simcHnx7G5zUx5wZhJzzkAGYasKiA1epgNg8OXGc';
+    axios.defaults.headers.post["Authorization"] = `Bearer ${token}`;
     const fileInputRef = useRef();
     const modalImageRef = useRef();
     const modalRef = useRef();
@@ -16,8 +16,8 @@ const Dropzone = ({token}) => {
     const [validFiles, setValidFiles] = useState([]);
     const [unsupportedFiles, setUnsupportedFiles] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-     const config = { headers: { Authorization: `Bearer ${token}` } };
-     console.log(config);
+     const headers = { Authorization: `Bearer ${token}` };
+     console.log(headers);
 
     useEffect(() => {
 
@@ -141,28 +141,41 @@ const Dropzone = ({token}) => {
 
         /// comienza la magia ///
        axios
-         .post("http://localhost:3000/upload", formData, {
-           onUploadProgress: (progressEvent) => {
-             const uploadPercentage = Math.floor(
-               (progressEvent.loaded / progressEvent.total) * 100
-             );
-             progressRef.current.innerHTML = `${uploadPercentage}%`;
-             progressRef.current.style.width = `${uploadPercentage}%`;
+         .post(
+           "http://localhost:3000/upload",
+           formData,
+           {
+             onUploadProgress: (progressEvent) => {
+               const uploadPercentage = Math.floor(
+                 (progressEvent.loaded / progressEvent.total) * 100
+               );
+               progressRef.current.innerHTML = `${uploadPercentage}%`;
+               progressRef.current.style.width = `${uploadPercentage}%`;
 
-             if (uploadPercentage === 100) {
-               uploadRef.current.innerHTML = "File(s) Uploaded";
-               validFiles.length = 0;
-               setValidFiles([...validFiles]);
-               setSelectedFiles([...validFiles]);
-               setUnsupportedFiles([...validFiles]);
-             }
-           },
-           config
-         })
-         .catch((error) => {
-           uploadRef.current.innerHTML = `<span class="error">${error.errorMessage}</span>`;
-           progressRef.current.style.backgroundColor = "red";
-         });
+               if (uploadPercentage === 100) {
+                 uploadRef.current.innerHTML = "File(s) Uploaded";
+                 validFiles.length = 0;
+                 setValidFiles([...validFiles]);
+                 setSelectedFiles([...validFiles]);
+                 setUnsupportedFiles([...validFiles]);
+               }
+             },
+           }, headers
+         )
+          .catch((error) => {
+            uploadRef.current.innerHTML = `<span class="error">${error.response.data.error}</span>`;
+            progressRef.current.style.backgroundColor = "red";
+          } );
+        //  .then(
+        //    (response) => {
+        //     //  console.log(response.data);
+        //    },
+        //    (error) => {
+        //        console.log(error.response.data.error)
+        //      uploadRef.current.innerHTML = `<span class="error">${error.response.data.error}</span>`;
+        //         progressRef.current.style.backgroundColor = "red";
+        //    }
+        //  );
         }
     }
 
