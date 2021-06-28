@@ -19,7 +19,7 @@ useEffect(() => {
         .get(baseUrl, {
           headers: { Authorization: headers },
         })
-        .then(({ data }) => setUser(datos))
+        .then(() => setUser(datos))
         .catch((err) => {
           localStorage.clear();
           console.log(err);

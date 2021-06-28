@@ -1,4 +1,5 @@
 import React from 'react'
+import AdminNav from './AdminNav'
 import Dropzone from './Drop'
 import FetchFiles from './FetchFiles';
 // import Logout from "../services/login"
@@ -10,7 +11,7 @@ console.log(userData)
   return (
     <>
       <div>
-        <p className="uppercase">Hola {userData.username}</p>
+        <AdminNav user = {userData.username}/>
       </div>
       <div className="content">
         <Dropzone token={userData.token} />
