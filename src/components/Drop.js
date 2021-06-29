@@ -75,7 +75,7 @@ const Dropzone = ({token}) => {
             } else {
                 files[i]['invalid'] = true;
                 setSelectedFiles(prevArray => [...prevArray, files[i]]);
-                setErrorMessage('File type not permitted');
+                setErrorMessage('Tipo de archino no permitido');
                 setUnsupportedFiles(prevArray => [...prevArray, files[i]]);
             }
         }
@@ -153,7 +153,7 @@ const Dropzone = ({token}) => {
                progressRef.current.style.width = `${uploadPercentage}%`;
 
                if (uploadPercentage === 100) {
-                 uploadRef.current.innerHTML = "File(s) Uploaded";
+                 uploadRef.current.innerHTML = "Archivos enviados correctamente ✔ ";
                  validFiles.length = 0;
                  setValidFiles([...validFiles]);
                  setSelectedFiles([...validFiles]);
