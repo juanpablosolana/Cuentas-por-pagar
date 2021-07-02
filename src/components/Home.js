@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import AdminNav from './AdminNav'
+import Dashboard from './Dashboard';
 // import LeftNav from './LeftNav';
 import Dropzone from './Drop'
 import FetchFiles from './FetchFiles';
@@ -107,6 +108,9 @@ const Home = ({userData})=>{
         {/*     <Dropzone token={userData.token} /> */}
             {/* <FetchFiles token={userData.token} /> */}
             <Switch>
+                <Route exact path="/">
+                  <Dashboard token={userData.token} />
+                </Route>
               <Route exact path="/cargarcfdi">
                 <Dropzone token={userData.token} />
               </Route>
