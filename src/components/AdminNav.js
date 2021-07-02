@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
 
 const adminNav=({user})=>{
   // console.log(user)
   // return <p classNameName="uppercase">{`Hola ${user}`} </p>;}
+
+  function logout(){
+    localStorage.clear();
+    window.location.href = "http://localhost:3001";
+  }
 
 return (
   <div className="relative bg-white">
@@ -18,31 +23,21 @@ return (
         </div>
 
         <nav className="hidden space-x-10 md:flex">
-          <a
-            href="#"
-            className="text-base font-medium text-gray-500 hover:text-gray-900"
-          >
-            Pricing
-          </a>
-          <a
-            href="#"
-            className="text-base font-medium text-gray-500 hover:text-gray-900"
-          >
-            Docs
-          </a>
+
+       <p>Plataforma de control </p>
         </nav>
         <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
           <p>{`Hola ${user}`} </p>
-          <a
-            href="#"
+          <button
+            onClick={logout}
             className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white bg-yellow-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-yellow-800"
           >
             Cerrar sesión
-          </a>
+          </button>
         </div>
       </div>
     </div>
   </div>
-);}
-
+);
+}
 export default adminNav
