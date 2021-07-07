@@ -13,6 +13,8 @@ function useCfdi(token) {
       })
       .then(response => {
         response.data= response.data.filter(valor => valor.timbreFiscal !== undefined)
+        response.data = response.data.filter(valor => valor.impuestos !== undefined)
+
       /*   dataFilter = response.data.filter(valor => valor.fiscal !== undefined) */
         console.log(response.data)
         setCfdi(response.data)
@@ -57,6 +59,24 @@ const Render = ({ token }) => {
                 <p className="item">{item.receptor.nombre}</p>
                 <p className="item">Uso del CFDI: {item.receptor.usoCFDI}</p>
                 <div></div> <h2>Conceptos</h2><div></div>
+            {
+              item.conceptos.map((element, index) => {
+                return (
+                  <>
+                    <p class="item">Cantindad: ${item.conceptos[index].cantidad}</p>
+                    <p class="item">Unidad de medida: ${item.conceptos[index].claveUnidad}</p>
+                    <p class="item">Clave del Producto ${item.conceptos[index].claveProdServ}</p>
+                    <p class="item">Descripcion: ${item.conceptos[index].descripcion}</p>
+                    <p class="item">Valor unitario: ${item.conceptos[index].valorUnitario}</p>
+                    <p class="item">Importe: ${item.conceptos[index].importe}</p>
+                 </>
+              )}).join('\n')
+            }
+            <h2>Totales</h2><div></div>
+            <p className="item">Sub total: ${item.subTotal}</p>
+            <p className="item">IVA: ${item.impuestos.totalImpuestosTrasladados}</p>
+            <p className="item">Total: ${item.total}</p>
+            <p className="item">Moneda: ${item.moneda}</p>
         </section>
       </details>
       ))
