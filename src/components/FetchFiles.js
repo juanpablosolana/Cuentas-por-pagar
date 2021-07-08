@@ -13,7 +13,7 @@ function useCfdi(headers) {
       .then(response => {
         response.data = response.data.filter(valor => valor.timbreFiscal !== undefined)
         response.data = response.data.filter(valor => valor.impuestos !== undefined)
-        console.log(response.data)
+        // console.log(response.data)
         setCfdi(response.data)
       })
       .catch((err) => {

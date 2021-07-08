@@ -18,7 +18,7 @@ const Home = ({userData})=>{
 // console.log(userData)
   return (
     <>
-    {console.log("cargando")}
+    {/* {console.log("cargando")} */}
       <AdminNav user={userData.username} />
       <div className="flex flex-row h-full">
         <Router>

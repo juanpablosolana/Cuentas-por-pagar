@@ -4,7 +4,7 @@ import axios from 'axios';
 import './drop.css';
 
 const Dropzone = ({token}) => {
-    console.log(token)
+    // console.log(token)
     axios.defaults.headers.post["Authorization"] = `Bearer ${token}`;
     const fileInputRef = useRef();
     const modalImageRef = useRef();
@@ -17,7 +17,7 @@ const Dropzone = ({token}) => {
     const [unsupportedFiles, setUnsupportedFiles] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
      const headers = { Authorization: `Bearer ${token}` };
-     console.log(headers);
+    //  console.log(headers);
 
     useEffect(() => {
 

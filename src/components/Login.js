@@ -35,7 +35,7 @@ const Login = () => {
         <div className="absolute inset-0 z-0 bg-black opacity-60"></div>
         <div className="z-10 w-full px-24">
           <h1 className="text-5xl font-bold tracking-wide text-left">
-            Plataforma de control de acceso
+            Plataforma de control
           </h1>
           <p className="my-4 text-3xl"> </p>
         </div>
