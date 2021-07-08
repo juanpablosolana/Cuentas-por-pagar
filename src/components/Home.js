@@ -18,6 +18,7 @@ const Home = ({userData})=>{
 // console.log(userData)
   return (
     <>
+    {console.log("cargando")}
       <AdminNav user={userData.username} />
       <div className="flex flex-row h-full">
         <Router>
@@ -60,7 +61,7 @@ const Home = ({userData})=>{
                   </Link>
                 </li>
                 <li className="mb-6">
-                  <a href="#">
+                  <a href="/">
                     <span>
                       <svg
                         className="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-green-500"
@@ -76,7 +77,7 @@ const Home = ({userData})=>{
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="/">
                     <span>
                       <svg
                         className="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-green-500"

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import Login from './components/Login'
 import Home from './components/Home'
-import axios from "axios";
+import axios from "axios"
 
 function App() {
 
@@ -12,11 +12,11 @@ useEffect(() => {
     {
       const baseUrl =
         "http://localhost:3000/api/v1/cfdi";
-    const token = datos.token
-    const headers = `Bearer ${token}`;
-    function checkToken(){
-      axios
-        .get(baseUrl, {
+      const token = datos.token
+      const headers = `Bearer ${token}`;
+        function checkToken(){
+          axios
+          .get(baseUrl, {
           headers: { Authorization: headers },
         })
         .then(() => setUser(datos))
@@ -28,11 +28,12 @@ useEffect(() => {
       checkToken();
 
     } else(console.log('no entro al if'))
-  }, [])
+  }, [setUser])
 
   return (
     <>
-    {user?<Home userData={user} />:<Login/>}
+  {user ? <Home userData={user} /> : <Login />}
+
   </>
   );
 }

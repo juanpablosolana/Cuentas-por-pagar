@@ -23,7 +23,7 @@ const Login = () => {
       setPassword("")
       window.location.replace('');
     } catch(error) {
-  setErrorMessage("Wrong credentials")
+  setErrorMessage("Usuario y/o contraseña incorrectos")
   setTimeout(() => {
   setErrorMessage(null)
   }, 5000)
@@ -73,7 +73,7 @@ const Login = () => {
               />
             </div>
             <div className="text-right text-gray-400 hover:underline hover:text-gray-600">
-              <a href="#">No recuerdo mi contraseña</a>
+              <a href="/">No recuerdo mi contraseña</a>
             </div>
             <div className="px-4 pt-4 pb-2">
               <button className="block w-full p-4 text-lg uppercase bg-yellow-500 rounded-full hover:bg-yellow-600 focus:outline-none">
