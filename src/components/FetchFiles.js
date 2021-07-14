@@ -5,6 +5,7 @@ function useCfdi(headers) {
 
   const [cfdi, setCfdi] = useState([])
 
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/v1/cfdi", {
@@ -20,7 +21,7 @@ function useCfdi(headers) {
         console.log(err);
       });
 
-  })
+  },[])
 
   return cfdi
 }
@@ -28,6 +29,18 @@ function useCfdi(headers) {
 const Render = ({ token }) => {
   const headers = `Bearer ${token}`
   const files = useCfdi( headers )
+
+  function estatus(Emisor, Receptor, Total, Uuid) {
+    axios.get(`https://cfdiestaus.herokuapp.com/${Emisor}&&${Receptor}&&${Total}&&${Uuid}`)
+      .then(response => {
+        console.log(response.data['s:Envelope']['s:Body']['ConsultaResponse']['ConsultaResult']['a:Estado'])
+
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+  //   console.log("estatus")
+  // }
   return (
     <>{
       files.map(item => (
@@ -75,6 +88,8 @@ const Render = ({ token }) => {
             <p className="item">Total: ${item.total}</p>
             <p className="item">Moneda: ${item.moneda}</p>
         </section>
+        {estatus(item.emisor.rfc, item.receptor.rfc, item.total, item.timbreFiscal.uuid)}
+
       </details>
       ))
  }
